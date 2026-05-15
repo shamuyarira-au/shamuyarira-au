@@ -7,451 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --cream: #F4F1EC;
-      --ink:   #0E0D0B;
-      --mid:   #6B6660;
-      --gold:  #B89050;
-      --rule:  #D9D4CC;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ── CUSTOM CURSOR ── */
-    body { cursor: none; }
-    #cursor {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.15s ease, opacity 0.2s;
-      transform: translate(-50%, -50%);
-    }
-    #cursor-ring {
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      border: 1px solid var(--gold);
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), opacity 0.2s;
-      transform: translate(-50%, -50%);
-      opacity: 0.5;
-    }
-
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.022;
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    /* ── STAGGER FADE ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) forwards;
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .d1 { animation-delay: 0.1s; }
-    .d2 { animation-delay: 0.25s; }
-    .d3 { animation-delay: 0.4s; }
-    .d4 { animation-delay: 0.55s; }
-    .d5 { animation-delay: 0.7s; }
-    .d6 { animation-delay: 0.85s; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 28px 60px;
-      mix-blend-mode: multiply;
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-weight: 300;
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--mid);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .nav-links a:hover { color: var(--ink); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding: 0 60px 60px;
-    }
-    .hero-content {
-      align-self: center;
-      padding-top: 120px;
-      max-width: 820px;
-    }
-    .hero-eyebrow {
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 36px;
-    }
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(3.4rem, 7vw, 7rem);
-      line-height: 1.02;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      margin-bottom: 40px;
-    }
-    h1 em {
-      font-style: italic;
-      color: var(--gold);
-    }
-    .hero-tagline {
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      color: var(--mid);
-      max-width: 380px;
-      line-height: 1.8;
-    }
-    .hero-rule {
-      width: 100%;
-      height: 1px;
-      background: var(--rule);
-      align-self: end;
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      padding: 120px 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .section-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 28px;
-    }
-    h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 1.12;
-      color: var(--ink);
-    }
-    .about-body {
-      padding-top: 12px;
-    }
-    .about-body p {
-      font-size: 0.78rem;
-      letter-spacing: 0.03em;
-      color: var(--mid);
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      margin-top: 48px;
-      padding-top: 48px;
-      border-top: 1px solid var(--rule);
-    }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 2.6rem;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-    }
-    .stat-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--mid);
-      margin-top: 4px;
-    }
-
-    /* ── SUBSIDIARIES ── */
-    #subsidiaries {
-      padding: 0 60px 140px;
-    }
-    .sub-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 64px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid var(--rule);
-    }
-    .sub-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-    .sub-card {
-      background: var(--ink);
-      padding: 64px 56px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.5s cubic-bezier(0.22,1,0.36,1);
-    }
-    .sub-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gold);
-      transform: translateX(-101%);
-      transition: transform 0.55s cubic-bezier(0.22,1,0.36,1);
-    }
-    .sub-card:hover::before { transform: translateX(0); }
-    .sub-card:hover .sub-num,
-    .sub-card:hover .sub-name,
-    .sub-card:hover .sub-desc,
-    .sub-card:hover .sub-tag { color: var(--ink); }
-    .sub-card:hover .sub-arrow { color: var(--ink); }
-    .sub-card * { position: relative; z-index: 1; }
-
-    .sub-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.14em;
-      margin-bottom: 48px;
-      transition: color 0.4s;
-    }
-    .sub-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 2.4rem;
-      color: #F4F1EC;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-      transition: color 0.4s;
-    }
-    .sub-desc {
-      font-size: 0.72rem;
-      letter-spacing: 0.05em;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.85;
-      max-width: 300px;
-      margin-bottom: 52px;
-      transition: color 0.4s;
-    }
-    .sub-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    .sub-card:hover .sub-footer { border-top-color: rgba(0,0,0,0.12); }
-    .sub-tag {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      transition: color 0.4s;
-    }
-    .sub-arrow {
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.3);
-      transition: color 0.4s, transform 0.3s;
-    }
-    .sub-card:hover .sub-arrow { transform: translate(4px, -4px); }
-
-    /* ── PRINCIPLES ── */
-    #principles {
-      padding: 120px 60px;
-      background: var(--ink);
-      color: var(--cream);
-    }
-    .principles-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .principles-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 80px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .principles-head .section-label { color: var(--gold); }
-    .principles-head h2 { color: var(--cream); }
-    .principle-list { list-style: none; }
-    .principle-item {
-      display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 32px;
-      padding: 36px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      align-items: start;
-      transition: padding-left 0.3s;
-    }
-    .principle-item:hover { padding-left: 8px; }
-    .principle-n {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 1.5rem;
-      color: rgba(255,255,255,0.15);
-    }
-    .principle-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 1.3rem;
-      color: var(--cream);
-      margin-bottom: 10px;
-    }
-    .principle-body {
-      font-size: 0.7rem;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.4);
-      line-height: 1.9;
-    }
-
-    /* ── CONTACT ── */
-    #contact {
-      padding: 120px 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: end;
-    }
-    .contact-left h2 { margin-bottom: 20px; }
-    .contact-left p {
-      font-size: 0.75rem;
-      color: var(--mid);
-      letter-spacing: 0.05em;
-      line-height: 1.9;
-    }
-    .contact-email {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(1.4rem, 3vw, 2.4rem);
-      color: var(--ink);
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 40px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--gold);
-      transition: color 0.25s, border-color 0.25s;
-    }
-    .contact-email:hover { color: var(--gold); }
-    .contact-right {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .contact-detail {
-      padding: 28px 0;
-      border-top: 1px solid var(--rule);
-    }
-    .contact-detail-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-    .contact-detail-value {
-      font-size: 0.76rem;
-      color: var(--mid);
-      letter-spacing: 0.04em;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 36px 60px;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-copy {
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      color: var(--mid);
-    }
-    .footer-mark {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 24px 28px; }
-      .nav-links { display: none; }
-      #hero { padding: 0 28px 48px; }
-      #about { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
-      #subsidiaries { padding: 0 28px 80px; }
-      .sub-grid { grid-template-columns: 1fr; }
-      #principles { padding: 80px 28px; }
-      .principles-head { flex-direction: column; gap: 16px; }
-      .principle-item { grid-template-columns: 40px 1fr; }
-      #contact { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
-      footer { padding: 28px; flex-direction: column; gap: 12px; text-align: center; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- cursor -->
+  <!-- CURSOR -->
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
 
@@ -469,8 +29,7 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-content">
-      <p class="hero-eyebrow reveal d1">Private Holdings &nbsp;·&nbsp; Est. 2026</p>
-      <h1 class="reveal d2">Building<br><em>enduring</em><br>enterprises.</h1>
+      <h1 class="reveal d1">Building<br><em>enduring</em><br>enterprises.</h1>
       <p class="hero-tagline reveal d3">
         Shamuyarira Holdings is a privately held parent company investing in technology businesses built for the long term.
       </p>
@@ -520,12 +79,12 @@
     </div>
     <div class="sub-grid">
 
-      <!-- FKNSecure -->
+      <!-- ABC Tech -->
       <div class="sub-card reveal d2">
         <div class="sub-num">01 &mdash; Portfolio</div>
-        <div class="sub-name">FKNSecure</div>
+        <div class="sub-name">ABC Tech</div>
         <div class="sub-desc">
-          A cybersecurity focused marketplace ecommerce platform.
+          A technology company delivering innovative solutions that drive digital transformation for businesses and communities.
         </div>
         <div class="sub-footer">
           <span class="sub-tag">Technology</span>
@@ -533,15 +92,15 @@
         </div>
       </div>
 
-      <!-- Roots n Livity -->
+      <!-- LMM Software -->
       <div class="sub-card reveal d3">
         <div class="sub-num">02 &mdash; Portfolio</div>
-        <div class="sub-name">Roots n Livity</div>
+        <div class="sub-name">LMM Software</div>
         <div class="sub-desc">
-          A haircare marketplace tailored to individuals with dreadlocks.
+          A software development company building robust, scalable products that serve enterprise and mid-market clients.
         </div>
         <div class="sub-footer">
-          <span class="sub-tag">Beauty</span>
+          <span class="sub-tag">Software</span>
           <span class="sub-arrow">↗</span>
         </div>
       </div>
@@ -593,12 +152,12 @@
   <section id="contact">
     <div class="contact-left">
       <p class="section-label reveal d1">Get in touch</p>
-      <h2 class="reveal d2">Inquiries</h2>
+      <h2 class="reveal d2">Inquiries &amp; partnerships</h2>
       <p class="reveal d3">
-        For general enquiries, please reach out directly.
+        For general enquiries, investment proposals, or information about our portfolio companies, please reach out directly.
       </p>
-      <a href="mailto:PLACEHOLDER" class="contact-email reveal d4">
-        test@test.com
+      <a href="mailto:info@shamuyariraholdings.com" class="contact-email reveal d4">
+        info@shamuyariraholdings.com
       </a>
     </div>
     <div class="contact-right reveal d3">
@@ -612,39 +171,17 @@
       </div>
       <div class="contact-detail">
         <div class="contact-detail-label">Sector</div>
-        <div class="contact-detail-value">Technology &amp; Beauty</div>
+        <div class="contact-detail-value">Technology &amp; Software</div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p class="footer-copy">&copy; 2025 Shamuyarira PTY LTD All rights reserved.</p>
+    <p class="footer-copy">&copy; 2025 Shamuyarira Holdings. All rights reserved.</p>
     <p class="footer-mark">Shamuyarira Holdings</p>
   </footer>
 
-  <script>
-    // Cursor
-    const cur = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    document.addEventListener('mousemove', e => {
-      cur.style.transform  = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-      ring.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-    });
-
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.reveal').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
-    });
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
