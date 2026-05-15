@@ -420,17 +420,107 @@ footer {
   color: var(--mid);
 }
 
-/* ── RESPONSIVE ── */
+/* ── HAMBURGER BUTTON (hidden on desktop) ── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--ink);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ── MOBILE MENU OVERLAY ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 150;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.mobile-menu.open { opacity: 1; }
+.mobile-menu a {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2.4rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--gold); }
+
+/* ── TABLET (max 1024px) ── */
+@media (max-width: 1024px) {
+  nav { padding: 24px 40px; }
+  #hero { padding: 0 40px 48px; }
+  #about { padding: 100px 40px; gap: 56px; }
+  #subsidiaries { padding: 0 40px 100px; }
+  .sub-card { padding: 48px 40px; }
+  #principles { padding: 100px 40px; }
+  #contact { padding: 100px 40px; gap: 56px; }
+  footer { padding: 32px 40px; }
+}
+
+/* ── MOBILE (max 768px) ── */
 @media (max-width: 768px) {
-  nav { padding: 24px 28px; }
+  body { cursor: auto; }
+  #cursor, #cursor-ring { display: none; }
+
+  nav { padding: 20px 24px; }
   .nav-links { display: none; }
-  #hero { padding: 0 28px 48px; }
-  #about { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
-  #subsidiaries { padding: 0 28px 80px; }
+  .nav-toggle { display: flex; }
+
+  #hero { padding: 0 24px 48px; }
+  .hero-content { padding-top: 40px; }
+  .hero-tagline { max-width: 100%; font-size: 0.82rem; }
+
+  #about { grid-template-columns: 1fr; padding: 72px 24px; gap: 40px; }
+  .about-stats { gap: 24px; }
+
+  #subsidiaries { padding: 0 24px 72px; }
+  .sub-header { flex-direction: column; gap: 8px; margin-bottom: 40px; }
   .sub-grid { grid-template-columns: 1fr; }
-  #principles { padding: 80px 28px; }
-  .principles-head { flex-direction: column; gap: 16px; }
-  .principle-item { grid-template-columns: 40px 1fr; }
-  #contact { grid-template-columns: 1fr; padding: 80px 28px; gap: 48px; }
-  footer { padding: 28px; flex-direction: column; gap: 12px; text-align: center; }
+  .sub-card { padding: 44px 32px; }
+
+  #principles { padding: 72px 24px; }
+  .principles-head { flex-direction: column; gap: 12px; margin-bottom: 48px; }
+  .principle-item { grid-template-columns: 36px 1fr; gap: 20px; padding: 28px 0; }
+
+  #contact { grid-template-columns: 1fr; padding: 72px 24px; gap: 48px; align-items: start; }
+  .contact-email { font-size: 1.3rem; }
+
+  footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
+}
+
+/* ── SMALL MOBILE (max 480px) ── */
+@media (max-width: 480px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 1.9rem; }
+  .sub-name { font-size: 1.9rem; }
+  .sub-card { padding: 36px 24px; }
+  .about-stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .stat-num { font-size: 2rem; }
+  .principle-item { grid-template-columns: 30px 1fr; gap: 16px; }
+  .principle-title { font-size: 1.1rem; }
 }
