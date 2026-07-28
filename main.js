@@ -2,10 +2,36 @@
 const cur  = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
 
+let mouseX = 0, mouseY = 0;
+let ringX  = 0, ringY  = 0;
+let rafId  = null;
+
 document.addEventListener('mousemove', e => {
-  cur.style.transform  = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-  ring.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+  // Dot follows instantly
+  cur.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+
+  // Kick off ring animation loop if not already running
+  if (!rafId) rafId = requestAnimationFrame(animateRing);
 });
+
+function animateRing() {
+  // Smooth ring with a fast lerp (0.2 = snappy, increase toward 1 for instant)
+  ringX += (mouseX - ringX) * 0.25;
+  ringY += (mouseY - ringY) * 0.25;
+
+  ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+
+  const dx = mouseX - ringX;
+  const dy = mouseY - ringY;
+  if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+    rafId = requestAnimationFrame(animateRing);
+  } else {
+    rafId = null;
+  }
+}
 
 /* ── MOBILE MENU ── */
 const toggle     = document.querySelector('.nav-toggle');
