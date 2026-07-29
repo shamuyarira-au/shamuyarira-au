@@ -74,6 +74,17 @@ body::before {
 .d5 { animation-delay: 0.7s; }
 .d6 { animation-delay: 0.85s; }
 
+/* ── TOP BANNER ── */
+.top-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gold);
+  z-index: 200;
+}
+
 /* ── NAV ── */
 nav {
   position: fixed;
