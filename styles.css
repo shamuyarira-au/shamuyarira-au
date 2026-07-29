@@ -120,23 +120,29 @@ nav {
 .hero-inner {
   align-self: center;
   padding-top: 60px;
-  display: grid;
-  grid-template-columns: 1fr auto;
+  position: relative;
+  display: flex;
   align-items: center;
-  gap: 60px;
 }
 .hero-content {
   max-width: 640px;
 }
 .hero-logo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.92;
+  pointer-events: none;
 }
 .hero-logo img {
-  width: 220px;
+  width: 90%;
+  max-width: 680px;
   height: auto;
+  opacity: 0.1;
 }
 .hero-eyebrow {
   font-size: 0.65rem;
@@ -420,8 +426,8 @@ footer {
   .nav-toggle { display: flex; }
 
   #hero { padding: 0 24px 48px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; padding-top: 40px; }
-  .hero-logo img { width: 160px; }
+  .hero-inner { padding-top: 40px; }
+  .hero-logo { width: 70%; opacity: 0.07; }
   .hero-tagline { max-width: 100%; font-size: 0.82rem; }
 
   #about { grid-template-columns: 1fr; padding: 72px 24px; gap: 40px; }
