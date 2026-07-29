@@ -456,8 +456,9 @@ footer {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
 
-  #hero { padding: 0 24px 48px; }
-  .hero-inner { padding-top: 40px; }
+  #hero { padding: 0 24px 32px; min-height: auto; }
+  .hero-inner { padding-top: 24px; padding-bottom: 24px; }
+  h1 { margin-bottom: 20px; }
   .hero-logo { display: none; }
   .hero-logo-mobile { display: none; }
   .hero-tagline { max-width: 100%; font-size: 0.82rem; }
@@ -482,7 +483,7 @@ footer {
 
 /* ── SMALL MOBILE (max 480px) ── */
 @media (max-width: 480px) {
-  h1 { font-size: 3rem; }
+  h1 { font-size: 2.6rem; margin-bottom: 16px; }
   h2 { font-size: 1.9rem; }
   .sub-name { font-size: 1.9rem; }
   .sub-card { padding: 36px 24px; }
