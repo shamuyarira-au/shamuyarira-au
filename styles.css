@@ -405,6 +405,21 @@ footer {
   transition: opacity 0.35s ease;
 }
 .mobile-menu.open { opacity: 1; }
+.mobile-menu-close {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 10px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.mobile-menu-close:hover { opacity: 1; }
 .mobile-menu a {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
@@ -472,4 +487,33 @@ footer {
   .stat-num { font-size: 2rem; }
   .principle-item { grid-template-columns: 30px 1fr; gap: 16px; }
   .principle-title { font-size: 1.1rem; }
+}
+
+/* ── SCROLL TO TOP ── */
+.scroll-top {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  width: 44px;
+  height: 44px;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 90;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+}
+.scroll-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-top:hover {
+  background: var(--ink);
+  color: var(--cream);
 }
