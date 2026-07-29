@@ -126,7 +126,6 @@ nav {
   transform: translateY(-50%);
   width: 60%;
   pointer-events: none;
-  opacity: 0.08;
 }
 .hero-logo img {
   width: 100%;
