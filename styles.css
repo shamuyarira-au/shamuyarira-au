@@ -116,33 +116,33 @@ nav {
   display: grid;
   grid-template-rows: 1fr auto;
   padding: 0 60px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-logo {
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60%;
+  pointer-events: none;
+  opacity: 0.08;
+}
+.hero-logo img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .hero-inner {
   align-self: center;
   padding-top: 60px;
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
 }
 .hero-content {
   max-width: 640px;
-}
-.hero-logo {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-.hero-logo img {
-  width: 90%;
-  max-width: 680px;
-  height: auto;
-  opacity: 0.1;
 }
 .hero-eyebrow {
   font-size: 0.65rem;
