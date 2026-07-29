@@ -173,7 +173,7 @@ h1 em {
 .hero-rule {
   width: 100%;
   height: 1px;
-  background: var(--rule);
+  background: linear-gradient(to right, var(--rule), var(--ink));
   align-self: end;
 }
 
@@ -184,6 +184,7 @@ h1 em {
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: start;
+  background: var(--ink);
 }
 .section-label {
   font-size: 0.62rem;
@@ -197,13 +198,13 @@ h2 {
   font-weight: 300;
   font-size: clamp(2rem, 4vw, 3.4rem);
   line-height: 1.12;
-  color: var(--ink);
+  color: var(--cream);
 }
 .about-body { padding-top: 12px; }
 .about-body p {
   font-size: 0.78rem;
   letter-spacing: 0.03em;
-  color: var(--mid);
+  color: rgba(244,241,236,0.5);
   line-height: 1.9;
   margin-bottom: 20px;
 }
@@ -213,28 +214,28 @@ h2 {
   gap: 36px;
   margin-top: 48px;
   padding-top: 48px;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 .stat-num {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   font-size: 2.6rem;
-  color: var(--ink);
+  color: var(--cream);
   letter-spacing: -0.02em;
 }
 .stat-label {
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--mid);
+  color: rgba(244,241,236,0.4);
   margin-top: 4px;
 }
 
 /* ── PRINCIPLES ── */
 #principles {
   padding: 120px 60px;
-  background: var(--ink);
-  color: var(--cream);
+  background: var(--cream);
+  color: var(--ink);
 }
 .principles-inner {
   max-width: 1000px;
@@ -246,17 +247,17 @@ h2 {
   align-items: baseline;
   margin-bottom: 80px;
   padding-bottom: 32px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--rule);
 }
 .principles-head .section-label { color: var(--gold); }
-.principles-head h2 { color: var(--cream); }
+.principles-head h2 { color: var(--ink); }
 .principle-list { list-style: none; }
 .principle-item {
   display: grid;
   grid-template-columns: 60px 1fr;
   gap: 32px;
   padding: 36px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--rule);
   align-items: start;
   transition: padding-left 0.3s;
 }
@@ -265,19 +266,19 @@ h2 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   font-size: 1.5rem;
-  color: rgba(255,255,255,0.15);
+  color: rgba(14,13,11,0.15);
 }
 .principle-title {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
   font-size: 1.3rem;
-  color: var(--cream);
+  color: var(--ink);
   margin-bottom: 10px;
 }
 .principle-body {
   font-size: 0.7rem;
   letter-spacing: 0.04em;
-  color: rgba(255,255,255,0.4);
+  color: var(--mid);
   line-height: 1.9;
 }
 
@@ -288,11 +289,12 @@ h2 {
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: end;
+  background: var(--ink);
 }
-.contact-left h2 { margin-bottom: 20px; }
+.contact-left h2 { margin-bottom: 20px; color: var(--cream); }
 .contact-left p {
   font-size: 0.75rem;
-  color: var(--mid);
+  color: rgba(244,241,236,0.5);
   letter-spacing: 0.05em;
   line-height: 1.9;
 }
@@ -300,7 +302,7 @@ h2 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   font-size: clamp(1.4rem, 3vw, 2.4rem);
-  color: var(--ink);
+  color: var(--cream);
   text-decoration: none;
   display: inline-block;
   margin-top: 40px;
@@ -316,7 +318,7 @@ h2 {
 }
 .contact-detail {
   padding: 28px 0;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 .contact-detail-label {
   font-size: 0.62rem;
@@ -327,22 +329,23 @@ h2 {
 }
 .contact-detail-value {
   font-size: 0.76rem;
-  color: var(--mid);
+  color: rgba(244,241,236,0.5);
   letter-spacing: 0.04em;
 }
 
 /* ── FOOTER ── */
 footer {
   padding: 36px 60px;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid rgba(255,255,255,0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--ink);
 }
 .footer-copy {
   font-size: 0.62rem;
   letter-spacing: 0.12em;
-  color: var(--mid);
+  color: rgba(244,241,236,0.35);
 }
 .footer-mark {
   font-family: 'Cormorant Garamond', serif;
@@ -350,7 +353,7 @@ footer {
   font-size: 0.85rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--mid);
+  color: rgba(244,241,236,0.35);
 }
 
 /* ── HAMBURGER BUTTON (hidden on desktop) ── */
