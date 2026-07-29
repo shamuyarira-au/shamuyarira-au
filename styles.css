@@ -459,7 +459,7 @@ footer {
   #hero { padding: 0 24px 48px; }
   .hero-inner { padding-top: 40px; }
   .hero-logo { display: none; }
-  .hero-logo-mobile { display: block; }
+  .hero-logo-mobile { display: none; }
   .hero-tagline { max-width: 100%; font-size: 0.82rem; }
 
   #about { grid-template-columns: 1fr; padding: 72px 24px; gap: 40px; }
