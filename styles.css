@@ -456,8 +456,9 @@ footer {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
 
-  #hero { padding: 0 24px 32px; min-height: auto; }
-  .hero-inner { padding-top: 24px; padding-bottom: 24px; }
+  #hero { padding: 0 24px 40px; min-height: auto; }
+  .hero-inner { padding-top: 80px; padding-bottom: 24px; }
+  .hero-logo-mobile { margin-bottom: 36px; margin-top: 16px; }
   h1 { margin-bottom: 20px; }
   .hero-logo { display: none; }
   .hero-logo-mobile { display: block; }
